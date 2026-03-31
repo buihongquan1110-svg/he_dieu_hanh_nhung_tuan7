@@ -92,13 +92,18 @@ static struct file_operations fops = {
 };
 
 static int __init mycdev_init(void) {
+    // 1. Đăng ký Driver và lấy số Major động từ Kernel
     majorNumber = register_chrdev(0, DEVICE_NAME, &fops);
+
+    // 2. TẠO CLASS: Tạo một mục trong /sys/class/
     myClass = class_create(THIS_MODULE, CLASS_NAME);
+
+    // 3. TẠO DEVICE: Tự động tạo file /dev/my_char_dev
     myDevice = device_create(myClass, NULL, MKDEV(majorNumber, 0), NULL, DEVICE_NAME);
+
     printk(KERN_INFO "MyCharDev: Nap thanh cong Major %d\n", majorNumber);
     return 0;
 }
-
 static void __exit mycdev_exit(void) {
     device_destroy(myClass, MKDEV(majorNumber, 0));
     class_unregister(myClass);
