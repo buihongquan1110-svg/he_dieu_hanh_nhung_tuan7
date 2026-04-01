@@ -157,8 +157,8 @@ cat /dev/my_char_dev
 ### Kết quả
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/7cb39206-74bb-4da0-a366-0ff96d8a342f" />
 
-# BÀI 2: Mở rộng driver trên cho phép tương tác ngoại vi GPIO và Viết chương trình C ở lớp User Space
-## Cấu trúc thư viện
+## BÀI 2: Mở rộng driver trên cho phép tương tác ngoại vi GPIO và Viết chương trình C ở lớp User Space
+### Cấu trúc thư viện
 ```bash
 my_gpio_driver/
 ├── Config.in           # Cấu hình menu cho Buildroot
@@ -168,8 +168,8 @@ my_gpio_driver/
     ├── my_gpio_app.c    # Mã nguồn App User Space (Blink LED)
     └── Makefile         # Makefile biên dịch chéo (Cross-compile)
 ```
-## Nội dung các file chi tiết
-### 1. File `"Config.in"`
+### Nội dung các file chi tiết
+#### 1. File `"Config.in"`
 ```bash
 nano package/my_gpio_driver/Config.in
 ```
@@ -185,7 +185,7 @@ config BR2_PACKAGE_MY_GPIO_DRIVER
 
       Truy cap tai /dev/my_gpio_dev sau khi load module.
 ```
-### 2. File `"my_gpio_driver.mk"`
+#### 2. File `"my_gpio_driver.mk"`
 ```bash
 nano package/my_gpio_driver/my_gpio_driver.mk
 ```
@@ -210,7 +210,7 @@ $(eval $(kernel-module))
 $(eval $(generic-package))
 ```
 
-### 3. File `"my_gpio_driver.c"`
+#### 3. File `"my_gpio_driver.c"`
 ```bash
 nano package/my_gpio_driver/src/my_gpio_driver.c
 ```
@@ -336,7 +336,7 @@ int main(int argc, char *argv[]) {
 }
 ```
 
-### 5. File Makefile
+#### 5. File Makefile
 ```bash
 nano package/my_gpio_driver/src/Makefile
 ```
@@ -353,29 +353,29 @@ clean:
         rm -f my_gpio_app
 ```
 
-## Thêm vào Config.in chính
+### Thêm vào Config.in chính
 - Lệnh `"nano package/Config.in"`
 - Kéo xuống cuối file, thêm dòng sau vào trước dòng cuối cùng:
 ```bash
 source "package/my_gpio_driver/Config.in"
 ```
-## Cập nhật cấu hình
+### Cập nhật cấu hình
 ```bash
 make menuconfig
 ```
 tìm Target packages --> my_gpio_driver
 
-## Biên dịch Driver
+### Biên dịch Driver
 ```bash
 make my_gpio_driver
 make
 ```
-## Nạp lại img vào thẻ
+### Nạp lại img vào thẻ
 ```bash
 sudo dd if=output/images/sdcard.img of=/dev/sdb bs=4M status=progress
 sync
 ```
-## Kiểm tra trên BBB
+### Kiểm tra trên BBB
 - Nạp Driver
 ```bash
 # Nạp module
@@ -402,10 +402,10 @@ my_gpio_app
 my_gpio_app 100
 ```
 
-## Kết quả
+### Kết quả
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/6070fe8d-1888-44a8-b6a2-7ae5badfaf2d" />
 
-## Video demo kết quả
+### Video demo kết quả
 
 
 https://github.com/user-attachments/assets/aa0dade6-7484-4c6d-850e-e8dad2334d77
