@@ -405,3 +405,10 @@ my_gpio_app 100
 ## Kết quả
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/6070fe8d-1888-44a8-b6a2-7ae5badfaf2d" />
 
+## Video demo kết quả
+
+
+https://github.com/user-attachments/assets/aa0dade6-7484-4c6d-850e-e8dad2334d77
+
+
+
